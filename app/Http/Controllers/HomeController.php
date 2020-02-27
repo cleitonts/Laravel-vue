@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Artigo;
+use App\User;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -23,6 +25,13 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $usuarios = User::count();
+        $artigos = Artigo::count();
+        $autores = User::where("autor", "=", "S")->count();
+
+        $lista_migalhas = json_encode([
+            ["titulo" => "Home",                "url" => ""]
+        ]);
+        return view('home', compact("lista_migalhas", "usuarios", "artigos", "autores"));
     }
 }
