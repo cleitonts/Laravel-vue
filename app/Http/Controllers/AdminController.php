@@ -6,7 +6,7 @@ use App\Artigo;
 use App\User;
 use Illuminate\Http\Request;
 
-class HomeController extends Controller
+class AdminController extends Controller
 {
     /**
      * Create a new controller instance.
@@ -30,8 +30,8 @@ class HomeController extends Controller
         $autores = User::where("autor", "=", "S")->count();
 
         $lista_migalhas = json_encode([
-            ["titulo" => "Home",                "url" => ""]
+            ["titulo" => "Admin",                "url" => ""]
         ]);
-        return view('home', compact("lista_migalhas", "usuarios", "artigos", "autores"));
+        return view('admin', compact("lista_migalhas", "usuarios", "artigos", "autores"));
     }
 }

@@ -1,5 +1,7 @@
 <?php
 
+use App\Artigo;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -12,12 +14,21 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
-});
+    $lista = Artigo::listaArtigosSite(3);
+    return view('site', compact('lista'));
+})->name('site');
+
+Route::get('/artigo/{id}/{titulo?}', function ($id) {
+    $artigo = Artigo::find($id);
+    if($artigo){
+        return view('artigo', compact('artigo'));
+    }
+    return redirect()->route('site');
+})->name('artigo');
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/admin', 'AdminController@index')->name('admin');
 
 // middleware informa se precisa passar pelo processo de validação
 // prefix se refere ao primeiro path informado na url

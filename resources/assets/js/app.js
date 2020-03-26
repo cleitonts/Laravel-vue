@@ -39,6 +39,7 @@ Vue.component('breadcrumbs', require('./components/Breadcrumbs.vue'));
 Vue.component('modal', require('./components/modal/Modal'));
 Vue.component('modal-button', require('./components/modal/ModalButton.vue'));
 Vue.component('formulario', require('./components/Formulario.vue'));
+Vue.component('artigo-card', require('./components/ArtigoCard.vue'));
 
 const app = new Vue({
     el: '#app',
